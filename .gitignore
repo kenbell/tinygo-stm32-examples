@@ -1,0 +1,5 @@
+*.elf
+
+# VSCode
+.vscode
+*.code-workspace
