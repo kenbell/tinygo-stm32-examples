@@ -1,6 +1,6 @@
 // +build stm32l552
 
-package main
+package common
 
 import (
 	"machine"
@@ -16,7 +16,7 @@ import (
 	"github.com/kenbell/tinygo-stm32/uart"
 )
 
-var boardCfg = boards.BasicBoardConfig{
+var BoardCfg = boards.BasicBoardConfig{
 	OscillatorConfig: &clock.OscillatorConfig{
 		LSE: &lse.Config{
 			State:     lse.StateOn,
@@ -41,10 +41,11 @@ var boardCfg = boards.BasicBoardConfig{
 		},
 	},
 	ClockConfig: &clock.Config{
-		SYSCLKSource:   clock.SYSCLKSourcePLL,
-		AHBCLKDivider:  clock.HPREDividerDiv1,
-		APB1CLKDivider: clock.PPREDividerDiv1,
-		APB2CLKDivider: clock.PPREDividerDiv1,
+		SYSCLKSource:    clock.SYSCLKSourcePLL,
+		AHBCLKDivider:   clock.HPREDividerDiv1,
+		APB1CLKDivider:  clock.PPREDividerDiv1,
+		APB2CLKDivider:  clock.PPREDividerDiv1,
+		FlashWaitStates: 5, // @100 MHz, 5 wait states required
 	},
 	SleepTimer: timer.TIM15,
 	TickTimer:  timer.TIM16,
